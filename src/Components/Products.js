@@ -7,7 +7,7 @@ export class Products extends Component {
   // eslint-disable-next-line no-useless-constructor
   constructor() {
     super();
-    this.state = { data: data, message: '', show: false };
+    this.state = { data: data, message: false, show: false };
   }
   componentDidMount() {
     console.log(this.state.data);
@@ -17,8 +17,11 @@ export class Products extends Component {
   }
 
   buyProduct = () => {
-    this.setState({ message: 'You bought an item' });
+    this.setState({ message: true });
     console.log(this.state.message);
+    setTimeout(() => {
+      this.setState({ message: false });
+    }, '3000');
   };
 
   render() {
@@ -43,15 +46,8 @@ export class Products extends Component {
           ))}
         </div>
         {this.state.message && (
-          <div
-            className='alert alert-warning alert-dismissible fade show'
-            role='alert'>
-            <strong>Success!</strong> {this.state.message}
-            <button
-              type='button'
-              className='btn-close'
-              data-bs-dismiss='alert'
-              aria-label='Close'></button>
+          <div className='alert alert-warning' role='alert'>
+            <strong>Success!</strong> You bought an item
           </div>
         )}
       </div>
