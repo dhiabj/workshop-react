@@ -1,20 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import '../css/Product.css';
 
 const Product = ({ product, buyProduct }) => {
-  const [likes, setlikes] = useState(0);
+  const [likes, setlikes] = useState(product.like);
   const handleLikes = () => {
     setlikes(likes + 1);
     console.log(likes);
     //console.log(product.like);
   };
-  useEffect(() => {
-    product.like = likes;
-  }, [product, likes]);
 
   return (
     <div
-      className={product.like > 5 ? 'card me-5 bestProduct' : 'card me-5'}
+      className={likes > 5 ? 'card me-5 bestProduct' : 'card me-5'}
       style={{ width: '18rem' }}>
       <img
         src={require(`../assets/images/${product.img}`)}
@@ -26,7 +23,7 @@ const Product = ({ product, buyProduct }) => {
         <p className='card-text'>{product.description}</p>
         <p className='card-text'>{product.price} DT</p>
         <p className='card-text'>Quantity: {product.quantity}</p>
-        <p className='card-text'>Likes: {product.like}</p>
+        <p className='card-text'>Likes: {likes}</p>
         <div className='d-flex justify-content-between'>
           <button
             className='btn btn-primary'
